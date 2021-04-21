@@ -1,76 +1,59 @@
+import {HttpClient} from '@angular/common/http';
+
 import {Oferta} from './../shared/oferta.models';
 import {Injectable} from '@angular/core';
 
+//import 'rxjs/add/operator/toPromise';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OfertasServices {
 
-  public ofertas: Oferta[] = [
-    {
-      id: 1,
-      categoria: 'restaurante',
-      titulo: 'Super Burger',
-      descricao_oferta: 'Rodízio de Mini-hambúrger com opção de entrada.',
-      anunciante: 'Original Burger',
-      valor: 29.90,
-      destaque: true,
-      imagens: [
-        {url: '/assets/ofertas/1/img1.jpg'},
-        {url: '/assets/ofertas/1/img2.jpg'},
-        {url: '/assets/ofertas/1/img3.jpg'},
-        {url: '/assets/ofertas/1/img4.jpg'}
-      ]
-    },
-    {
-      id: 2,
-      categoria: 'restaurante',
-      titulo: 'Cozinha Mexicana',
-      descricao_oferta: 'Almoço ou Jantar com Rodízio Mexicano delicioso.',
-      anunciante: 'Mexicana',
-      valor: 32.90,
-      destaque: true,
-      imagens: [
-        {url: '/assets/ofertas/2/img1.jpg'},
-        {url: '/assets/ofertas/2/img2.jpg'},
-        {url: '/assets/ofertas/2/img3.jpg'},
-        {url: '/assets/ofertas/2/img4.jpg'}
-      ]
+  constructor(private http: HttpClient) {
+  }
 
-    },
-    {
-      id: 4,
-      categoria: 'diversao',
-      titulo: 'Estância das águas',
-      descricao_oferta: 'Diversão garantida com piscinas, trilhas e muito mais.',
-      anunciante: 'Estância das águas',
-      valor: 31.90,
-      destaque: true,
-      imagens: [
-        {url: '/assets/ofertas/3/img1.jpg'},
-        {url: '/assets/ofertas/3/img2.jpg'},
-        {url: '/assets/ofertas/3/img3.jpg'},
-        {url: '/assets/ofertas/3/img4.jpg'},
-        {url: '/assets/ofertas/3/img5.jpg'},
-        {url: '/assets/ofertas/3/img6.jpg'}
-      ]
-    }
-  ];
+  //public ofertas: Oferta[] = [];
 
 
-  public getOfertas(): Array<Oferta> {
-    return this.ofertas;
+  public getOfertas(): Promise<Oferta[]> {
+//efetuar uma rquisicao http
+    // e retornar uma promise de oferta[]
+    return this.http.get('http://localhost:3000/ofertas')
+      .toPromise().then((resposta: Oferta[]) => resposta);
   }
 
   //public getOfertas2(): Promise<Array<Oferta>>
-  public getOfertas2(): Promise<Oferta[]> {
+  /*public getOfertas2(): Promise<Oferta[]> {
     return new Promise((resolve, reject) => {
 
       //Pega a lsita de ofertas RESOLVE ele e passa adiante
-      console.log('Sera q passou por aqui?');
-      resolve(this.ofertas);
+      // console.log('Sera q passou por aqui?');
+
+      let deu_certo = true;
+
+      if (deu_certo) {
+        setTimeout(() => resolve(this.ofertas), 3000);
+
+      } else {
+        reject({codigo_erro: 404, mensagem_erro: 'Erro Server Not Found.'});
+      }
+    }).then((ofertas: Oferta[]) => {
+      //Fazer um tratativa
+      console.log('primeroda than');
+      return ofertas;
+    }).then((ofertas: Oferta[]) => {
+      console.log('segundo then'
+      );
+      return new Promise((resolve2, reject2) => {
+        setTimeout(() => {
+          resolve2(ofertas);
+        }, 3000);
+      });
+    }).then((ofertas: Oferta[]) => {
+      console.log('Terceiro then executado apos 3 segundos,' +
+        ' pq estava aguardando a promisse ser resolvida');
+      return ofertas;
     });
-  }
+  }*/
+
 
 }
