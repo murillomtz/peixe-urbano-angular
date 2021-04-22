@@ -17,8 +17,14 @@ export class OfertasServices {
   public getOfertas(): Promise<Oferta[]> {
 //efetuar uma rquisicao http
     // e retornar uma promise de oferta[]
-    return this.http.get('http://localhost:3000/ofertas')
-      .toPromise().then((resposta: Oferta[]) => resposta);
+    return this.http.get<Oferta[]>('http://localhost:3000/ofertas?destaque=true')
+      .toPromise();
+  }
+
+  public getOfertasPorCategoria(categoria: string): Promise<Oferta[]> {
+    return this.http.get<Oferta[]>(`http://localhost:3000/ofertas?categoria=${categoria}`)
+      .toPromise();
+
   }
 
   //public getOfertas2(): Promise<Array<Oferta>>

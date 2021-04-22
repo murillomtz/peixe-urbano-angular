@@ -1,5 +1,8 @@
 # App2
 
+para ativar o back-end 
+json-server --watch banco-de-dados.json
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
 ## Development server
