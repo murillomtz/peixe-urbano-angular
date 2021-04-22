@@ -2,7 +2,9 @@ import {Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {RestaurantesComponent} from './restaurantes/restaurantes.component';
 import {DiversaoComponent} from './diversao/diversao.component';
-import { OfertaComponent} from './oferta/oferta.component';
+import {OfertaComponent} from './oferta/oferta.component';
+import {ComoUsarComponent} from './oferta/como-usar/como-usar.component';
+import {OndeFicaComponent} from './oferta/onde-fica/onde-fica.component';
 
 export const ROUTES: Routes = [
   {
@@ -23,6 +25,16 @@ export const ROUTES: Routes = [
   },
   {
     path: 'ofertas/:id',
-    component: OfertaComponent
+    component: OfertaComponent,
+    children: [ //Rotas filhas
+      {
+        path: '', component: ComoUsarComponent
+      },//routerLink="como-usar" NAO USA BARRA EX routerLink="/como-usar"
+      {
+        path: 'como-usar', component: ComoUsarComponent
+      },
+      {
+        path: 'onde-fica', component: OndeFicaComponent
+      }]
   }
-]
+];
