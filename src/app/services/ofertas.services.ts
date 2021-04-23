@@ -4,6 +4,8 @@ import {Oferta} from './../shared/oferta.models';
 import {Injectable} from '@angular/core';
 
 import {URL_API} from '../app.api';
+import {Observable} from 'rxjs';
+import {retry} from 'rxjs/operators';
 
 
 @Injectable()
@@ -41,6 +43,15 @@ export class OfertasServices {
   public getOndeFicaOfertaPorId(id: number): Promise<string> {
     return this.http.get<string>(`${URL_API}onde-fica?id=${id}`)
       .toPromise();
+  }
+
+  //Pequisa superioor
+  public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+    //_like ele localiza apenas com algum elemento exemplo, MUrilo posso localizar usando "Mu"...
+    return this.http.get<Oferta[]>(`${URL_API}ofertas?descricao_oferta_like=${termo}`).pipe(
+      retry(10) // faz 10 tentativas caso falhe 10x ele para
+    );
+
   }
 
   //public getOfertas2(): Promise<Array<Oferta>>
