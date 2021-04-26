@@ -1,32 +1,29 @@
-import {Oferta} from './../shared/oferta.models';
-import {OfertasServices} from './../services/ofertas.services';
-import {Component, OnInit} from '@angular/core';
+import { OfertasModule  as  Oferta} from './../shared/oferta.model';
+import { OfertasService } from './../ofertas.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [OfertasServices]
+  providers: [ OfertasService ]
 })
 export class HomeComponent implements OnInit {
 
-  public ofertas: Oferta[];
+  public ofertas: Oferta[]
 
-  constructor(private offerService: OfertasServices) {
-  }
+  constructor(private ofertasService: OfertasService) { }
 
   ngOnInit(): void {
-    //this.offers = this.offerService.getOfertas();
-    // console.log(this.offers);
-    this.offerService.getOfertas()
-      .then(
-        (ofertas: Oferta[]) => {
-          this.ofertas = ofertas;
-        }/*, (param: any) => console.log(param)*/)
-      .catch(
-        (param: any) => {
+    // this.ofertas = this.ofertasService.getOfertas();
+    // console.log(this.ofertas);
 
-        });
-  }
+   this.ofertasService.getOfertas()
+    .then(
+      ( ofertas: Oferta[] ) => this.ofertas = ofertas) 
+     .catch( ( param: any ) =>  {
 
+     })
+    }
 }
+

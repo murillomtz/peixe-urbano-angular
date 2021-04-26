@@ -1,31 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {OfertasServices} from '../../services/ofertas.services';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router'
+import { OfertasModule } from 'src/app/shared/oferta.model';
+import { OfertasService } from '../../ofertas.service'
 
 @Component({
   selector: 'app-onde-fica',
   templateUrl: './onde-fica.component.html',
   styleUrls: ['./onde-fica.component.css'],
-  providers: [OfertasServices]
+  providers: [ OfertasService ]
 })
 export class OndeFicaComponent implements OnInit {
 
+  public ondeFica: string = ''
 
-  public ondeFica: string = '';
+  constructor(
+    private route: ActivatedRoute, 
+    private ofertasService: OfertasService
+) { }
 
-  constructor(private route: ActivatedRoute,
-              private ofertasServices: OfertasServices) {
-  }
-
-
-  ngOnInit(): void {
-    //Por ser uma rota filha precisa ter o .parent, para pegar a rota PAI
-    //http://localhost:4200/ofertas/1/onde-fica
-    const id = this.route.parent.snapshot.params['id'];
-    this.ofertasServices.getOndeFicaOfertaPorId(id).then((response: any) => {
-      this.ondeFica = response[0].descricao;
-      //console.log(response.descricao);
-    });
-
-  }
+ngOnInit() {
+  this.route.parent.params.subscribe((params: Params) => {
+    this.ofertasService.getOndeFicaOfertaPorId(params.id)
+      .then((res: any) => {
+        this.ondeFica = res[0].descricao
+      });
+  });
+ }
 }

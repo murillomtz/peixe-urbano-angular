@@ -1,31 +1,34 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {OfertasServices} from '../../services/ofertas.services';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router'
+import { OfertasService } from '../../ofertas.service'
 
 @Component({
   selector: 'app-como-usar',
   templateUrl: './como-usar.component.html',
   styleUrls: ['./como-usar.component.css'],
-  providers: [ OfertasServices]
+  providers: [ OfertasService ]
 })
 export class ComoUsarComponent implements OnInit {
 
-  public comoUsar: string = '';
+  public comoUsar: string = ''
+ 
 
-  constructor(private route: ActivatedRoute,
-              private ofertasServices: OfertasServices) {
-  }
+  constructor(
+              private route: ActivatedRoute, 
+              private ofertasService: OfertasService
+  ) { }
 
-  ngOnInit(): void {
-    //Por ser uma rota filha precisa ter o .parent, para pegar a rota PAI
-    //http://localhost:4200/ofertas/1/onde-fica
-    const id = this.route.parent.snapshot.params['id'];
-    this.ofertasServices.getComoUsarOfertaPorId(id).then((response: any) => {
-      this.comoUsar = response[0].descricao;
-      console.log(response.descricao);
-    });
+  ngOnInit() {
 
+    this.route.parent.params.subscribe((parametros: Params) => {
+      this.ofertasService.getComoUsarOfertaPorId(parametros.id)
+          .then((comoUsa: any) => {
+           this.comoUsar = comoUsa[0].descricao;
+    })
 
-  }
+   
+ })
+     
+ }
 
 }

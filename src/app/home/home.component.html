@@ -1,3 +1,4 @@
+
 <div class="container">
 
   <div class="secao">
@@ -5,7 +6,7 @@
     <h5 class="text-center">Aproveite as super ofertas que separamos para você:</h5>
   </div>
 
-  <hr/>
+  <hr />
 
   <div class="row" style="margin-bottom: 50px">
     <div class="col-sm-4" *ngFor="let oferta of ofertas">
@@ -13,13 +14,14 @@
         <img class="card-img-top" [src]="oferta.imagens[0].url">
         <div class="card-block">
           <h4 class="card-title">{{oferta.titulo}}</h4>
-          <p class="card-text">{{oferta.descricao_oferta}}.</p>
+          <p class="card-text">{{oferta.descricao_oferta}}</p>
           <p class="preco">{{oferta.valor | currency: 'BRL'}}</p>
-          <a [routerLink]="['/ofertas', oferta.id]" class="btn btn-outline-primary">Ver oferta</a>
+          <a [routerLink]="['/oferta', oferta.id]" class="btn btn-outline-primary">Ver oferta</a>
         </div>
       </div>
     </div>
   </div>
-  <hr/>
+  <hr />
 
 </div>
+
