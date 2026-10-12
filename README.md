@@ -1,30 +1,28 @@
-# App2
+# Ofertas Peixe Urbano
 
-para ativar o back-end 
-json-server --watch banco-de-dados.json
+Frontend Angular de demonstração inspirado em um portal de ofertas. A aplicação organiza páginas de ofertas, categorias e conteúdo de entretenimento, e pode consumir dados locais por meio de JSON Server.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+## Tecnologias principais
 
-## Development server
+- TypeScript
+- Angular 11
+- HTML e CSS
+- Bootstrap
+- JSON Server (dados locais)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Executar
 
-## Code scaffolding
+Com Node.js instalado:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+npx json-server --watch banco-de-dados.json
+```
 
-## Build
+Em outro terminal, inicie o frontend:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+npm start
+```
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+O servidor Angular fica disponível em `http://localhost:4200`. A aplicação espera o backend de dados local conforme descrito no código e no arquivo de banco JSON.
