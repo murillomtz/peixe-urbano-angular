@@ -56,15 +56,15 @@ O arquivo de dados pertence ao próprio projeto. Não foi identificado um backen
 
 ## Capturas do sistema
 
-Capturas reais obtidas em execução local em 12/10/2026.
+Capturas reais da interface em execução local. Nova coleta em 12–13/10/2026, com enquadramento fixo de **1440 × 900 pixels (web)**.
 
-### Página inicial
+### Ofertas na página inicial
 
-![Página inicial](docs/screenshots/inicio.jpg)
+![Ofertas na página inicial](docs/screenshots/inicio.jpg)
 
-### Detalhes de uma oferta
+### Detalhes da oferta
 
-![Detalhes de uma oferta](docs/screenshots/oferta.jpg)
+![Detalhes da oferta](docs/screenshots/oferta.jpg)
 
 ## Histórico
 
